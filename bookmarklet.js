@@ -26,7 +26,7 @@
 	}
 	reloadFunc = function(data){
 		if(timeoutID != null){
-			cancelTimeout(timeoutID);
+			clearTimeout(timeoutID);
 		}
 		$("#status").show();
 		contents = $(data).find('.content');
@@ -59,7 +59,7 @@
 			}
 			$("#status").text("Now loading... " + reloadCount);
 			console.log("reloading...");
-			setTimeout(function(){load(reloadFunc);}, 800);
+			timeoutID = setTimeout(function(){load(reloadFunc);}, 800);
 		}else{
 			reloadCount = 0;
 		}
