@@ -2,7 +2,7 @@
 リトルノアのファミ通Wikiにあるcoop掲示板をリロードするのを手助けするブックマークレットです。
 
 # 使い方
-1. bookmarklet.min.js をブックマークレットとしてブックマークに登録します。(手動で [Bookmarkify](http://bookmarkify.it/4114) に登録しているのでそちらで登録してもいいかもです)
+1. bookmarklet.min.js をブックマークレットとしてブックマークに登録します。(手動で [Hatena:Let](http://let.hatelabo.jp/mojimojikun/let/hJmfkLyF67Zv) に登録しているのでそちらで登録してもいいかもです)
 2. ファミ通Wikiのcoop掲示板のどこかのレベルの掲示板をブラウザで開きます。
 3. 登録したブックマークレットを選択します。
 4. 表示されているものががらっと変わるので、coopの募集情報を読んだり、「reload」ボタンを押してリロードしたりします。
