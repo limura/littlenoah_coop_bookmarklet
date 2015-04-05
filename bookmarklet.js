@@ -62,6 +62,7 @@
 			reloadCount++;
 			if(reloadCount > 30){
 				statusLoading('<span style="color:orange">reload stoped.</span> ' + reloadCount);
+				$("#reloadButton").removeAttr('disabled');
 				return;
 			}
 			statusLoading("Now loading..." + reloadCount);
