@@ -10,25 +10,33 @@
 	cdn = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/";
 	loadCSS(cdn+"css/bootstrap.min.css");
 	loadJavaScript(cdn+"js/bootstrap.min.js");
+	statusLoading = function(text){
+		$("#status").html(text);
+		$("#status").show();
+		$("#reloadButton").attr('disabled', true);
+	}
+	statusWaiting = function(){
+		$("#status").hide();
+		$("#reloadButton").removeAttr('disabled');
+	}
 	load = function(s){
 		$.ajax({url: window.location.href, type: "GET", success: s, error: function(err){
-			$("#status").html("load error." + err);
-			$("#status").show();
+			statusLoading("load error. " + err);
 		}});
 	}
 	reloadCount = 0;
 	render=function(postList){
 		html = '<div class="col-md-12">'
 		+ postList.join('')
-		+ '<div class="text-right"><a onClick="reload();" class="btn btn-primary" href="#">reload</a>&nbsp;&nbsp;&nbsp;</div><div id="status">Now loading...</div></div>';
+		+ '<div class="text-right"><a id="reloadButton" onClick="reload();" class="btn btn-primary" href="#">reload</a>&nbsp;&nbsp;&nbsp;</div><div id="status"></div></div>';
 		$('body').html(html);
-		$("#status").hide();
+		statusWaiting();
 	}
 	reloadFunc = function(data){
 		if(timeoutID != null){
 			clearTimeout(timeoutID);
 		}
-		$("#status").show();
+		statusLoading("Now Loading..." + reloadCount);
 		contents = $(data).find('.content');
 		newPostList = [];
 		newTextList = [];
@@ -52,12 +60,11 @@
 		render(newPostList);
 		if(!isNewAlive){
 			reloadCount++;
-			$("#status").show();
 			if(reloadCount > 30){
-				$("#status").text("reload stoped. " + reloadCount);
+				statusLoading('<span style="color:orange">reload stoped.</span> ' + reloadCount);
 				return;
 			}
-			$("#status").text("Now loading... " + reloadCount);
+			statusLoading("Now loading..." + reloadCount);
 			console.log("reloading...");
 			timeoutID = setTimeout(function(){load(reloadFunc);}, 800);
 		}else{
