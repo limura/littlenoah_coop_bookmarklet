@@ -24,7 +24,7 @@
 			statusLoading("load error. " + err);
 		}});
 	}
-	reloadCount = 0;
+	reloadCount = 30;
 	render=function(postList){
 		html = '<div class="col-md-12">'
 		+ postList.join('')
@@ -59,8 +59,8 @@
 		prevTextList = newTextList;
 		render(newPostList);
 		if(!isNewAlive){
-			reloadCount++;
-			if(reloadCount > 30){
+			reloadCount--;
+			if(reloadCount <= 0){
 				statusLoading('<span style="color:orange">reload stoped.</span> ' + reloadCount);
 				$("#reloadButton").removeAttr('disabled');
 				return;
@@ -69,11 +69,11 @@
 			console.log("reloading...");
 			timeoutID = setTimeout(function(){load(reloadFunc);}, 800);
 		}else{
-			reloadCount = 0;
+			reloadCount = 30;
 		}
 	};
 	reload=function(){
-		reloadCount = 0;
+		reloadCount = 30;
 		load(reloadFunc);
 	}
 	reload();
