@@ -74,6 +74,7 @@
 	};
 	reload=function(){
 		reloadCount = 30;
+		statusLoading("Now Loading..." + reloadCount);
 		load(reloadFunc);
 	}
 	reload();
