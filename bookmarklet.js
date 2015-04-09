@@ -22,6 +22,7 @@
 	load = function(s){
 		$.ajax({url: window.location.href, type: "GET", success: s, error: function(err){
 			statusLoading("load error. " + err);
+			$("#reloadButton").removeAttr('disabled');
 		}});
 	}
 	reloadCount = 30;
